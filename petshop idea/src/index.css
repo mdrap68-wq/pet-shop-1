@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-900: #16301f;
+  --color-brand-800: #1c3a26;
+  --color-brand-700: #1f4230;
+  --color-brand-600: #2c6b40;
+  --color-brand-500: #3b8a53;
+  --color-brand-100: #dff0e2;
+  --color-brand-50: #f0f8f1;
+
+  --color-cream: #fbf4ea;
+  --color-cream-dark: #f5e9d9;
+  --color-ink: #23282a;
+  --color-muted: #7c8489;
+  --color-accent: #e2703a;
+
+  --color-mint: #eaf6ec;
+  --color-blush: #fdeef1;
+  --color-sand: #fdf3e5;
+  --color-sky: #eaf3fb;
+  --color-lilac: #f1eefb;
+
+  --shadow-card: 0 1px 2px rgba(24, 40, 30, 0.04), 0 8px 24px -12px rgba(24, 40, 30, 0.12);
+  --shadow-hover: 0 8px 16px -6px rgba(24, 40, 30, 0.1), 0 24px 44px -20px rgba(24, 40, 30, 0.22);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01";
+  }
+  ::selection {
+    background: var(--color-brand-700);
+    color: #fff;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-rtl 28s linear infinite;
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float-soft 5s ease-in-out infinite;
+}
